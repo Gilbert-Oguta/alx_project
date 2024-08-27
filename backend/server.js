@@ -20,10 +20,10 @@ mongoose.connect(uri)
     console.error("Error connecting to MongoDB:", error);
   });
 
-  const exercisesRouter = require('./routes/exercises');
+  const vehiclesRouter = require('./routes/vehicles');
   const usersRouter = require('./routes/users');
   
-  app.use('/exercises', exercisesRouter);
+  app.use('/vehicles', vehiclesRouter);
   app.use('/users', usersRouter);
 
 app.listen(port, () => {
