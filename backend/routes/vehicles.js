@@ -2,8 +2,8 @@ const router = require('express').Router();
 let Vehicledata = require('../models/vehicle.model');
 
 router.route('/').get((req, res) => {
-  Exercise.find()
-    .then(vehicles => res.json(vehicles))
+  Vehicledata.find()
+    .then(vehicledatas => res.json(vehicledatas))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -33,7 +33,7 @@ router.route('/add').post((req, res) => {
 
 router.route('/:id').get((req, res) => {
   Vehicledata.findById(req.params.id)
-    .then(vehicle => res.json(vehicle))
+    .then(vehicledatas => res.json(vehicledatas))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

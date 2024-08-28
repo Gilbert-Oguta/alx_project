@@ -100,7 +100,7 @@ export default class CreateVehicledata extends Component {
 
     console.log(vehicle);
 
-    axios.post('http://localhost:5000/exercises/add', vehicle)
+    axios.post('http://localhost:5000/vehicles/add', vehicle)
       .then(res => console.log(res.data))
       .catch(error => {
         console.error('There was an error submitting the form!', error);

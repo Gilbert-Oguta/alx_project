@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-// Define the Exercise functional component to render each exercise
+// Define the vehicle functional component to render each vehicle
 const Vehicledata = props => (
   <tr>
     <td>{props.vehicle.username}</td>
@@ -13,7 +13,7 @@ const Vehicledata = props => (
     <td>{props.vehicle.duration}</td>
     <td>{props.vehicle.date.substring(0,10)}</td>
     <td>
-      <Link to={"/edit/"+props.vehicle._id}>edit</Link> | <a href="#" onClick={() => { props.deleteVehicledata(props.vehicle._id) }}>delete</a>
+      <Link to={"/edit/"+props.vehicledatas._id}>edit</Link> | <a href="#" onClick={() => { props.deleteVehicledata(props.vehicledatas._id) }}>delete</a>
     </td>
   </tr>
 );
@@ -27,28 +27,29 @@ export default class VehicledataList extends Component {
     this.state = { vehicles: [] };
   }
 
-  // Fetch exercises from the server when the component mounts
+  // Fetch vehiclesdata from the server when the component mounts
   componentDidMount() {
-    axios.get('http://localhost:5000/exercises/')
+    axios.get('http://localhost:5000/vehicledatas/')
       .then(response => {
-        this.setState({ vehicles: response.data });
+        console.log(response.data);
+        this.setState({ vehicledatas: response.data });
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  // Delete exercise from the server and update the state
+  // Delete vehicle from the server and update the state
   deleteVehicledata(id) {
-    axios.delete('http://localhost:5000/vehicles/'+id)
+    axios.delete('http://localhost:5000/vehicledatas/'+id)
       .then(response => { console.log(response.data); });
 
     this.setState({
-        vehicles: this.state.exercises.filter(el => el._id !== id)
+        vehicles: this.state.vehicles.filter(el => el._id !== id)
     });
   }
 
-  // Map over exercises and return a list of Exercise components
+  // Map over exercises and return a list of Vehicle components
   vehicleList() {
     return this.state.vehicles.map(currentvehicle => {
       return <Vehicledata 
